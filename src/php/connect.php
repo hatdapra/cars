@@ -1,7 +1,7 @@
 <?php
-	header("Access-Control-Allow-Origin: *");
 	header("Access-Control-Allow-Methods: OPTIONS, PUT, GET, POST, DELETE");
 	header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+	header("Access-Control-Allow-Origin: *");
 
 	$servername = "dhsrv";
 	$username = "admin";

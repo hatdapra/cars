@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+      "target": "http://dhsrv/",
+      "secure": false,
+      "logLevel": "debug"
+  }
+}

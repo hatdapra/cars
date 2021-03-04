@@ -42,7 +42,7 @@ export class CarService {
   }
 
   update(car: Car): Observable<Car[]>{
-    return this.http.post(`${this.baseUrl}/update.php`, JSON.stringify({data: car})).pipe(
+    return this.http.put(`${this.baseUrl}/update.php`, JSON.stringify({data: car})).pipe(
       map((res) => {
         let theCar = this.cars.find((item: any) => {
           return +item['id'] === +car.id 
@@ -52,6 +52,20 @@ export class CarService {
           theCar['model'] = car['model'];
         }
         return this.cars;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  delete(id: number): Observable<Car[]>{
+    const params = new HttpParams().set('id', id.toString());
+
+    return this.http.delete(`${this.baseUrl}/delete.php`, {params: params}).pipe(
+      map(res => {
+        const filterCars = this.cars.filter((car) => {
+          return +car['id'] !== +id;
+        });
+        return this.cars = filterCars;
       }),
       catchError(this.handleError)
     );
